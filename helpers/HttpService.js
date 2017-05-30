@@ -1,134 +1,139 @@
 import ServiceBase from 'ServiceBase'
 
 class Service extends ServiceBase {
-	constructor() {
-		super()
-		this.$$prefix = ''
-		this.$$path = {
-			wechatSignUp: '/user/wechat/sign/up',
-			wechatSignIn: '/user/wechat/sign/in',
-			decryptData : '/user/wechat/decrypt/data',
-			signIn      : '/user/sign/in',
-			signOut     : '/user/sign/out',
-			banner      : '/banner', 
-			classify    : '/classify', 
-			goods       : '/goods', 
-			search      : '/goods/search/all', 
-			cart        : '/cart', 
-			address     : '/address', 
-			order       : '/order', 
-        }
-	}
+  constructor() {
+    super()
+    this.$$prefix = ''
+    this.$$path = {
+      getAccessToken: '/api/getAccessToken',
+      wechatSignUp: '/user/wechat/sign/up',
+      wechatSignIn: '/onLogin',
+      decryptData: '/user/wechat/decrypt/data',
+      signIn: '/user/sign/in',
+      signOut: '/user/sign/out',
+      banner: '/banner',
+      classify: '/classify',
+      goods: '/goods',
+      search: '/goods/search/all',
+      cart: '/cart',
+      address: '/address',
+      order: '/order',
+    }
+  }
 
-	wechatSignUp(params) {
-		return this.postRequest(this.$$path.wechatSignUp, params)
-	}
+  getAccessToken(params) {
+    return this.getRequest(this.$$path.getAccessToken, params)
+  }
 
-	wechatSignIn(params) {
-		return this.postRequest(this.$$path.wechatSignIn, params)
-	}
+  wechatSignUp(params) {
+    return this.postRequest(this.$$path.wechatSignUp, params)
+  }
 
-	wechatDecryptData(params) {
-		return this.postRequest(this.$$path.decryptData, params)
-	}
-	
-	signIn(params) {
-		return this.postRequest(this.$$path.signIn, params) 
-	}
+  wechatSignIn(params) {
+    return this.postRequest(this.$$path.wechatSignIn, params)
+  }
 
-	signOut() {
-		return this.postRequest(this.$$path.signOut) 
-	}
+  wechatDecryptData(params) {
+    return this.postRequest(this.$$path.decryptData, params)
+  }
 
-	getBanners(params) {
-		return this.getRequest(this.$$path.banner, params)
-	}
+  signIn(params) {
+    return this.postRequest(this.$$path.signIn, params)
+  }
 
-	search(params) {
-		return this.getRequest(this.$$path.search, params)
-	}
+  signOut() {
+    return this.postRequest(this.$$path.signOut)
+  }
 
-	getGoods(params) {
-		return this.getRequest(this.$$path.goods, params)
-	}
+  getBanners(params) {
+    return this.getRequest(this.$$path.banner, params)
+  }
 
-	getClassify(params) {
-		return this.getRequest(this.$$path.classify, params)
-	}
+  search(params) {
+    return this.getRequest(this.$$path.search, params)
+  }
 
-	getDetail(id) {
-		return this.getRequest(`${this.$$path.goods}/${id}`)
-	}
+  getGoods(params) {
+    return this.getRequest(this.$$path.goods, params)
+  }
 
-	getCartByUser() {
-		return this.getRequest(this.$$path.cart)
-	}
+  getClassify(params) {
+    return this.getRequest(this.$$path.classify, params)
+  }
 
-	addCartByUser(goods) {
-		return this.postRequest(this.$$path.cart, {
-			goods: goods, 
-		})
-	}
+  getDetail(id) {
+    return this.getRequest(`${this.$$path.goods}/${id}`)
+  }
 
-	putCartByUser(id, params) {
-		return this.putRequest(`${this.$$path.cart}/${id}`, params)
-	}
+  getCartByUser() {
+    return this.getRequest(this.$$path.cart)
+  }
 
-	delCartByUser(id) {
-		return this.deleteRequest(`${this.$$path.cart}/${id}`)
-	}
+  addCartByUser(goods) {
+    return this.postRequest(this.$$path.cart, {
+      goods: goods,
+    })
+  }
 
-	clearCartByUser() {
-		return this.postRequest(`${this.$$path.cart}/clear`)
-	}
+  putCartByUser(id, params) {
+    return this.putRequest(`${this.$$path.cart}/${id}`, params)
+  }
 
-	getAddressList(params) {
-		return this.getRequest(this.$$path.address, params)
-	}
+  delCartByUser(id) {
+    return this.deleteRequest(`${this.$$path.cart}/${id}`)
+  }
 
-	getAddressDetail(id) {
-		return this.getRequest(`${this.$$path.address}/${id}`)
-	}
+  clearCartByUser() {
+    return this.postRequest(`${this.$$path.cart}/clear`)
+  }
 
-	postAddress(params) {
-		return this.postRequest(this.$$path.address, params)
-	}
+  getAddressList(params) {
+    return this.getRequest(this.$$path.address, params)
+  }
 
-	putAddress(id, params) {
-		return this.putRequest(`${this.$$path.address}/${id}`, params)
-	}
+  getAddressDetail(id) {
+    return this.getRequest(`${this.$$path.address}/${id}`)
+  }
 
-	deleteAddress(id, params) {
-		return this.deleteRequest(`${this.$$path.address}/${id}`)
-	}
+  postAddress(params) {
+    return this.postRequest(this.$$path.address, params)
+  }
 
-	getDefalutAddress() {
-		return this.getRequest(`${this.$$path.address}/default`)
-	}
+  putAddress(id, params) {
+    return this.putRequest(`${this.$$path.address}/${id}`, params)
+  }
 
-	setDefalutAddress(id) {
-		return this.postRequest(`${this.$$path.address}/default/${id}`)
-	}
+  deleteAddress(id, params) {
+    return this.deleteRequest(`${this.$$path.address}/${id}`)
+  }
 
-	getOrderList(params) {
-		return this.getRequest(this.$$path.order, params)
-	}
+  getDefalutAddress() {
+    return this.getRequest(`${this.$$path.address}/default`)
+  }
 
-	getOrderDetail(id) {
-		return this.getRequest(`${this.$$path.order}/${id}`)
-	}
+  setDefalutAddress(id) {
+    return this.postRequest(`${this.$$path.address}/default/${id}`)
+  }
 
-	postOrder(params) {
-		return this.postRequest(this.$$path.order, params)
-	}
+  getOrderList(params) {
+    return this.getRequest(this.$$path.order, params)
+  }
 
-	putOrder(id, params) {
-		return this.putRequest(`${this.$$path.order}/${id}`, params)
-	}
+  getOrderDetail(id) {
+    return this.getRequest(`${this.$$path.order}/${id}`)
+  }
 
-	deleteOrder(id, params) {
-		return this.deleteRequest(`${this.$$path.order}/${id}`)
-	}
+  postOrder(params) {
+    return this.postRequest(this.$$path.order, params)
+  }
+
+  putOrder(id, params) {
+    return this.putRequest(`${this.$$path.order}/${id}`, params)
+  }
+
+  deleteOrder(id, params) {
+    return this.deleteRequest(`${this.$$path.order}/${id}`)
+  }
 }
 
 export default Service
