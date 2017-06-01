@@ -16,20 +16,18 @@ Page({
     try {
       var token = App.WxService.getStorageSync('token')
       if (token) {
-        this.goIndex
+        this.goIndex();
       }
       else {
         App.HttpService.getAccessToken({
           clientId: App.Config.clientId,
           clientSecret: App.Config.clientSecret,
-          serverUrl: App.Config.fileBasePath,
-          redirectUrl: App.Config.redirectUrl,
           apiToken: App.Config.apiToken
         }).then(data => {
           console.log(data)
-          if (data.accessToken) {
-            App.WxService.setStorageSync('token', data.accessToken)
-            this.goLogin
+          if (data.AccessToken) {
+            App.WxService.setStorageSync('token', data.AccessToken)
+            this.goLogin();
           }
         })
       }

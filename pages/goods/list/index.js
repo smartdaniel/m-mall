@@ -58,10 +58,10 @@ Page({
         console.log(data)
         if (data.meta.code == 0) {
           data.data.items.forEach(n => n.thumb_url = App.renderImage(n.images[0] && n.images[0].path))
-          goods.items = [...goods.items, ...data.data.items]
-          goods.paginate = data.data.paginate
-          goods.params.page = data.data.paginate.next
-          goods.params.limit = data.data.paginate.perPage
+          goods.items = [...goods.items, ...data.items]
+          goods.paginate = data.paginate
+          goods.params.page = data.paginate.next
+          goods.params.limit = data.paginate.perPage
           this.setData({
             goods: goods,
             'prompt.hidden': goods.items.length,

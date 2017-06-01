@@ -34,7 +34,7 @@ App({
   renderImage(path) {
     if (!path) return ''
     if (path.indexOf('http') !== -1) return path
-    return `${this.Config.fileBasePath}${path}`
+    return `${this.Config.basePath}${path}`
   },
   WxValidate: (rules, messages) => new WxValidate(rules, messages),
   HttpResource: (url, paramDefaults, actions, options) => new HttpResource(url, paramDefaults, actions, options).init(),

@@ -5,19 +5,19 @@ class Service extends ServiceBase {
     super()
     this.$$prefix = ''
     this.$$path = {
-      getAccessToken: '/api/getAccessToken',
-      wechatSignUp: '/user/wechat/sign/up',
-      wechatSignIn: '/onLogin',
+      getAccessToken: '/api/authorize',
+      wechatSignUp: '/wechatApi/onRegister',
+      wechatSignIn: '/wechatApi/onLogin',
       decryptData: '/user/wechat/decrypt/data',
       signIn: '/user/sign/in',
       signOut: '/user/sign/out',
-      banner: '/banner',
-      classify: '/classify',
-      goods: '/goods',
-      search: '/goods/search/all',
-      cart: '/cart',
-      address: '/address',
-      order: '/order',
+      banner: '/wechatApi/banner',
+      classify: '/wechatApi/classify',
+      goods: '/wechatApi/goods',
+      search: '/wechatApi/goods/search/all',
+      cart: '/wechatApi/cart',
+      address: '/wechatApi/address',
+      order: '/wechatApi/order',
     }
   }
 
@@ -107,7 +107,7 @@ class Service extends ServiceBase {
     return this.deleteRequest(`${this.$$path.address}/${id}`)
   }
 
-  getDefalutAddress() {
+  getDefaultAddress() {
     return this.getRequest(`${this.$$path.address}/default`)
   }
 
